@@ -1,0 +1,26 @@
+{
+  "name": "pm2-fronterr",
+  "version": "0.0.1",
+  "description": "PM2 Front End Error Module",
+  "main": "app.js",
+  "dependencies": {
+    "pmx" : "latest",
+    "express" : "latest",
+    "cors" : "latest",
+    "shelljs": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pm2-hive/pm2-fronterr.git"
+  },
+  "config" : {
+    "port": 4444
+  },
+  "apps" : [{
+    "merge_logs"         : true,
+    "max_memory_restart" : "200M",
+    "script"             : "app.js"
+  }],
+  "author": "Keymetrics Inc.",
+  "license": "MIT"
+}
