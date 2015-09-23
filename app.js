@@ -29,7 +29,7 @@ pmx.initModule({
 
 }, function(err, conf) {
   //Generate the script to use conf ip:port
-  fs.readFile('templateScript.js', 'utf-8', function(err, data) {
+  fs.readFile('public/templateScript.js', 'utf-8', function(err, data) {
     if (err) throw err;
     data = data.replace("##IP##", conf.ip);
     data = data.replace("##PORT##", conf.port);
