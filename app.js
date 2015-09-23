@@ -2,6 +2,7 @@ var pmx = require('pmx');
 var express = require('express');
 var app = express();
 var cors = require('cors');
+var fs = require('fs');
 
 pmx.initModule({
 
@@ -9,7 +10,7 @@ pmx.initModule({
 
 	  logo : 'https://mdn.mozillademos.org/files/3563/HTML5_Logo_128.png',
 
-    theme : ['#111111', '#1B2228', '#807C7C', '#807C7C'],
+    theme : ['#262E35', '#1B2228', '#807C7C', '#807C7C'],
 
     el : {
       probes  : true,
@@ -27,7 +28,20 @@ pmx.initModule({
   }
 
 }, function(err, conf) {
+  //Generate the script to use conf ip:port
+  fs.readFile('templateScript.js', 'utf-8', function(err, data) {
+    if (err) throw err;
+    data = data.replace("##IP##", conf.ip);
+    data = data.replace("##PORT##", conf.port);
+    if (conf.ajax !== 'true')
+      data = data.split("$(document)")[0];
+    fs.writeFile('public/script.js', data, 'utf-8', function(err) {
+      if (err) throw err;
+      console.log('script generated');
+    })
+  });
   app.use(cors());
+  app.use(express.static('public'));
   app.get('/', function(req, res) {
     res.send('pm2-fronterr module running');
   });

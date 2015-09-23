@@ -14,7 +14,9 @@
     "url": "https://github.com/pm2-hive/pm2-fronterr.git"
   },
   "config" : {
-    "port": 4444
+    "ip": "localhost",
+    "port": 4322,
+    "ajax": "true"
   },
   "apps" : [{
     "merge_logs"         : true,

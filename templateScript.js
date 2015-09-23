@@ -12,7 +12,7 @@ function createCORSRequest(method, url) {
 }
 
 function makeCorsRequest(data) {
-  var url = 'http://localhost:4444' + data;
+  var url = 'http://##IP##:##PORT##' + data;
 
   var xhr = createCORSRequest('POST', url);
   if (!xhr) {
@@ -35,8 +35,7 @@ function makeCorsRequest(data) {
 window.addEventListener('error', function(e) {
   var dataErr = '?msg=' + e.message + '&filename=' + e.filename + '&lineno=' + e.lineno;
   makeCorsRequest(dataErr);
-})
-
+});
 $(document).ajaxError(function(e, request, settings) {
   console.log(request.status);;
   var dataErr = '?status=' + request.status  + '&result=' + request.responseText;
