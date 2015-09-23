@@ -29,13 +29,13 @@ pmx.initModule({
 
 }, function(err, conf) {
   //Generate the script to use conf ip:port
-  fs.readFile('public/templateScript.js', 'utf-8', function(err, data) {
+  fs.readFile('./public/templateScript.js', 'utf-8', function(err, data) {
     if (err) throw err;
     data = data.replace("##IP##", conf.ip);
     data = data.replace("##PORT##", conf.port);
     if (conf.ajax !== 'true')
       data = data.split("$(document)")[0];
-    fs.writeFile('public/script.js', data, 'utf-8', function(err) {
+    fs.writeFile('./public/script.js', data, 'utf-8', function(err) {
       if (err) throw err;
       console.log('script generated');
     })
