@@ -1,8 +1,9 @@
 var pmx = require('pmx');
+var fs = require('fs');
 var express = require('express');
 var app = express();
 var cors = require('cors');
-var fs = require('fs');
+var UglifyJS = require('uglify-js');
 
 pmx.initModule({
 
@@ -29,16 +30,17 @@ pmx.initModule({
 
 }, function(err, conf) {
   //Generate the script to use conf ip:port
-  fs.readFile('./public/templateScript.js', 'utf-8', function(err, data) {
+  fs.readFile('./templateScript.js', 'utf-8', function(err, data) {
     if (err) throw err;
     data = data.replace("##IP##", conf.ip);
     data = data.replace("##PORT##", conf.port);
     if (conf.ajax !== 'true')
       data = data.split("$(document)")[0];
-    fs.writeFile('./public/script.js', data, 'utf-8', function(err) {
+    var result = UglifyJS.minify(data, {fromString:true});
+    fs.writeFile('./public/fronterr-min.js', result.code, 'utf-8', function(err) {
       if (err) throw err;
-      console.log('script generated');
-    })
+      console.log('script minified');
+    });
   });
   app.use(cors());
   app.use(express.static('public'));
