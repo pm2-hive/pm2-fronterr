@@ -4,4 +4,4 @@ node_modules
 test/child
 *.iml
 .idea/**
-public/
+public/fronterr-min.js
