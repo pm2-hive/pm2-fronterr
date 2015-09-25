@@ -45,7 +45,7 @@ pmx.initModule({
   app.use(cors());
   app.use(express.static('public'));
   app.get('/', function(req, res) {
-    res.send('pm2-fronterr module running');
+    res.send('pm2-fronterr running. Sent JS and Ajax error to Keymetrics for testing<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script><script src="/fronterr-min.js"></script><script>$.get("demo_test.asp", function() {});console.log(test);</script>');
   });
   app.post('/', function(req, res) {
     var query = req.query

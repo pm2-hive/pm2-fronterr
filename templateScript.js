@@ -37,7 +37,6 @@ window.addEventListener('error', function(e) {
   makeCorsRequest(dataErr);
 });
 $(document).ajaxError(function(e, request, settings) {
-  console.log(request.status);;
   var dataErr = '?status=' + request.status  + '&result=' + request.responseText;
   makeCorsRequest(dataErr);
 });
